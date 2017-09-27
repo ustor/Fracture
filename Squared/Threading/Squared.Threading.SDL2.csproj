@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ECCB8787-0FC6-43B2-ABD1-6CBB237916EC}</ProjectGuid>
+    <ProjectGuid>{42F6DF17-1BFD-4CD7-B2F2-8A470BFBF4DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Squared.Threading</RootNamespace>
