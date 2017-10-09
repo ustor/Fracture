@@ -47,7 +47,7 @@ namespace Squared.Render {
 
 
             #region Direct3D
-#if !SDL2
+#if !SDL2 && !MG
 
             private readonly void* pUnboxedEffect;
 
@@ -133,6 +133,11 @@ namespace Squared.Render {
             }
 
 #endif
+            #endregion
+
+            #region MG
+            #if MG
+            #endif
             #endregion
 
             #region SDL2

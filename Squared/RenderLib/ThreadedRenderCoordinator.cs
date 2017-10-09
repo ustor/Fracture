@@ -203,7 +203,7 @@ namespace Squared.Render {
 
             var viewport = Device.Viewport;
             Device.Present(
-#if !SDL2 // Ignore verbose Present() overload -flibit
+#if !SDL2 && !MG // Ignore verbose Present() overload -flibit
                 new Rectangle(0, 0, viewport.Width, viewport.Height),
                 new Rectangle(0, 0, viewport.Width, viewport.Height),
                 IntPtr.Zero

@@ -123,9 +123,9 @@ namespace Squared.Render {
 
         private readonly ValueContainer _ValueContainer = new ValueContainer();
         // The latest value is written into this buffer
-        private readonly SafeBuffer     ScratchBuffer;
+        private readonly SafeBuffer  ScratchBuffer;
         // And then transferred and mutated in this buffer before being sent to D3D
-        private readonly SafeBuffer     UploadBuffer;
+        private readonly SafeBuffer  UploadBuffer;
 
         private delegate void CompatibilitySetter (ref T value);
         private CompatibilitySetter CurrentCompatibilityBinding;
@@ -192,12 +192,12 @@ namespace Squared.Render {
         private void GetCurrentNativeBinding (out NativeBinding nativeBinding) {
             lock (Lock) {
                 if (!CurrentNativeBinding.IsValid) {
-                    IsDirty = true;
+                IsDirty = true;
                     CreateNativeBinding(out CurrentNativeBinding);
-                }
+            }
 
                 nativeBinding = CurrentNativeBinding;
-            }
+        }
         }
 
         private void NativeFlush () {
