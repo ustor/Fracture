@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5284A9C0-E93F-4B5F-99A9-B6DB47DA05E9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Squared.Render.MG</RootNamespace>
     <AssemblyName>Squared.Render.MG</AssemblyName>
@@ -39,8 +39,9 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BatchCombiner.cs" />
@@ -59,11 +60,6 @@
     <Compile Include="RenderPrimitives.cs" />
     <Compile Include="RenderText.cs" />
     <Compile Include="Shaders.Designer.cs" />
-    <Compile Include="Shaders1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Shaders.resx</DependentUpon>
-    </Compile>
     <Compile Include="TextUtils.cs" />
     <Compile Include="ThreadedRenderCoordinator.cs" />
     <Compile Include="ThreadedRenderGame.cs" />
@@ -83,7 +79,6 @@
     <EmbeddedResource Include="Icon.bmp" />
     <EmbeddedResource Include="Shaders.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Shaders1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
