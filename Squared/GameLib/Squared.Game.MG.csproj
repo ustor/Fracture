@@ -9,8 +9,8 @@
     <ProjectGuid>{7E3BA64C-2126-4E9B-AFC9-73687040BD0F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Squared.Game.MG</RootNamespace>
-    <AssemblyName>Squared.Game.MG</AssemblyName>
+    <RootNamespace>Squared.Game</RootNamespace>
+    <AssemblyName>Squared.Game</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
