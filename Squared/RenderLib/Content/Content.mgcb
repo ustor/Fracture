@@ -13,3 +13,27 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin SquaredBitmapShader.mg.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:SquaredBitmapShader.mg.fx
+
+#begin SquaredGeometryShader.mg.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:SquaredGeometryShader.mg.fx
+
+#begin Lightmap.mg.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Lightmap.mg.fx
+
+#begin GaussianBlur.mg.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:GaussianBlur.mg.fx
+
