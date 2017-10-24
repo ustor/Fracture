@@ -233,10 +233,12 @@ namespace Squared.Render {
                 device.SamplerStates[i] = SamplerState.PointClamp;
             }
 
+#if !MGGL // VertexTextures and VertexSamplerStates not currently supported by MonoGame GL
             for (int i = 0; i < numVertexStages; i++) {
                 device.VertexTextures[i] = null;
                 device.VertexSamplerStates[i] = SamplerState.PointClamp;
             }
+#endif
 
             device.BlendState = BlendState.Opaque;
             device.DepthStencilState = DepthStencilState.None;
