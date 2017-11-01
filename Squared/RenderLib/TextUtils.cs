@@ -506,11 +506,20 @@ namespace Squared.Render.Text {
 
         static SpriteFontUtil () {
             var tSpriteFont = typeof(SpriteFont);
+#if MG // MonoGame
+            // Only textureValue is used (and only to pass the "compatibility" check)
+            textureValue = GetPrivateField( tSpriteFont, "_texture" );
+            glyphData = null;
+            croppingData = null;
+            kerning = null;
+            characterMap = null;
+#else // XNA
             textureValue = GetPrivateField(tSpriteFont, "textureValue");
             glyphData = GetPrivateField(tSpriteFont, "glyphData");
             croppingData = GetPrivateField(tSpriteFont, "croppingData");
             kerning = GetPrivateField(tSpriteFont, "kerning");
             characterMap = GetPrivateField(tSpriteFont, "characterMap");
+#endif
         }
 
         private static FieldInfo GetPrivateField (Type type, string fieldName) {
@@ -523,6 +532,17 @@ namespace Squared.Render.Text {
                 return false;
             }
 
+#if MG // MonoGame -- Has public access to necessary information (albeit a bit clumsily)
+            Dictionary<char, SpriteFont.Glyph> glyphDict = font.GetGlyphs();
+            List<SpriteFont.Glyph> glyphs = glyphDict.Values.ToList();
+            result = new FontFields {
+                Texture = font.Texture,
+                GlyphRectangles = glyphs.Select( g => g.BoundsInTexture ).ToList(),
+                CropRectangles = glyphs.Select( g => g.Cropping ).ToList(),
+                Characters = glyphs.Select( g => g.Character ).ToList(),
+                Kerning = glyphs.Select( g => new Vector3( g.LeftSideBearing, g.Width, g.RightSideBearing ) ).ToList()
+            };
+#else // XNA -- Needs access to a bunch of private fields
             result = new FontFields {
                 Texture = (Texture2D)(textureValue).GetValue(font),
                 GlyphRectangles = (List<Rectangle>)glyphData.GetValue(font),
@@ -530,6 +550,7 @@ namespace Squared.Render.Text {
                 Characters = (List<char>)characterMap.GetValue(font),
                 Kerning = (List<Vector3>)kerning.GetValue(font)
             };
+#endif
             return true;
         }
     }
