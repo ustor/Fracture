@@ -140,6 +140,8 @@ namespace Squared.Render {
 
 #if SDL2 // `Content/SquaredRender/` folder -flibit
             BuiltInShaders = new ContentManager(serviceProvider, "Content/SquaredRender");
+#elif MG
+            BuiltInShaders = new ContentManager( serviceProvider, "Content/SquaredRender" ); // This needs to use ContentManager (ResourceContentManager is for .resx file)
 #else
             BuiltInShaders = new ResourceContentManager(serviceProvider, Shaders.ResourceManager);
 #endif
@@ -150,8 +152,8 @@ namespace Squared.Render {
             );
 
    
-            var bitmapShader = BuiltInShaders.Load<Effect>("SquaredBitmapShader");
-            var geometryShader = BuiltInShaders.Load<Effect>("SquaredGeometryShader");
+            var bitmapShader = LoadBuiltInShader("SquaredBitmapShader");
+            var geometryShader = LoadBuiltInShader("SquaredGeometryShader");
             
             ScreenSpaceBitmap = new Material(
                 bitmapShader,
@@ -197,7 +199,7 @@ namespace Squared.Render {
                 "WorldSpaceUntextured"
             );
             
-            var lightmapShader = BuiltInShaders.Load<Effect>("Lightmap");
+            var lightmapShader = LoadBuiltInShader("Lightmap");
 
             ScreenSpaceLightmappedBitmap = new Material(
                 lightmapShader,
@@ -209,7 +211,7 @@ namespace Squared.Render {
                 "WorldSpaceLightmappedBitmap"
             );
 
-            var blurShader = BuiltInShaders.Load<Effect>("GaussianBlur");
+            var blurShader = LoadBuiltInShader("GaussianBlur");
 
             ScreenSpaceHorizontalGaussianBlur5Tap = new Material(
                 blurShader,
@@ -241,6 +243,14 @@ namespace Squared.Render {
                 ViewTransformStack.Push(ViewTransform.Default);
 
             PreallocateBindings();
+        }
+
+        private Effect LoadBuiltInShader( string name ) {
+#if MG
+            return BuiltInShaders.Load<Effect>( name + ".mg" );
+#else
+            return BuiltInShaders.Load<Effect>( name );
+#endif
         }
 
         public void PreallocateBindings () {
@@ -442,6 +452,12 @@ namespace Squared.Render {
         public readonly EffectParameter Time, ShadowColor, ShadowOffset, LightmapUVOffset;
 
         public DefaultMaterialSetEffectParameters (Effect effect) {
+#if MG
+            ViewportPosition = effect.Parameters["Viewport_Position"];
+            ViewportScale = effect.Parameters["Viewport_Scale"];
+            ProjectionMatrix = effect.Parameters["Viewport_Projection"];
+            ModelViewMatrix = effect.Parameters["Viewport_ModelView"];
+#else
             var viewport = effect.Parameters["Viewport"];
 
             if (viewport != null) {
@@ -450,6 +466,7 @@ namespace Squared.Render {
                 ProjectionMatrix = viewport.StructureMembers["Projection"];
                 ModelViewMatrix = viewport.StructureMembers["ModelView"];
             }
+#endif
 
             BitmapTextureSize = effect.Parameters["BitmapTextureSize"];
             HalfTexel = effect.Parameters["HalfTexel"];
