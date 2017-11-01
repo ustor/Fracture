@@ -141,7 +141,7 @@ namespace Squared.Render {
 #if SDL2 // `Content/SquaredRender/` folder -flibit
             BuiltInShaders = new ContentManager(serviceProvider, "Content/SquaredRender");
 #elif MG
-            BuiltInShaders = new ContentManager( serviceProvider, "Content/SquaredRender" ); // This needs to use ContentManager (ResourceContentManager is for .resx file)
+            BuiltInShaders = new ContentManager( serviceProvider, "Content" ); // This needs to use ContentManager (ResourceContentManager is for .resx file)
 #else
             BuiltInShaders = new ResourceContentManager(serviceProvider, Shaders.ResourceManager);
 #endif
