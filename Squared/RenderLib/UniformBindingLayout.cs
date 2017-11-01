@@ -47,7 +47,7 @@ namespace Squared.Render {
 
 
             #region Direct3D
-#if !SDL2 && !MG
+#if !SDL2 // && !MG // TODO: FIXME: MGGL Conversion
 
             private readonly void* pUnboxedEffect;
 

@@ -153,6 +153,7 @@ namespace Squared.Render {
         }
 
         public static UniformBinding<T> TryCreate (Effect effect, string uniformName) {
+            // TODO: FIXME: MGGL Conversion -- ID3DXEffect will always be null on MGGL
             if (effect == null)
                 return null;
             if (effect.Parameters[uniformName] == null)

@@ -266,7 +266,7 @@ namespace Squared.Render {
                 if (material.OwningThread != Thread.CurrentThread)
                     throw new InvalidOperationException("Uniform bindings must be allocated on the thread that owns the material.");
 
-#if SDL2 || MG
+#if SDL2 // || MG // TODO: FIXME: MGGL Conversion
                 UniformBinding<T> result;
                 throw new NotImplementedException("Create uniform binding for effect");
 #else
