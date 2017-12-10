@@ -440,12 +440,14 @@ namespace Squared.Render {
                     if (call.InstanceCount.HasValue) {
                         if (call.VertexBuffer3 != null) {
                             device.SetVertexBuffers(
-                                call.VertexBuffer, new VertexBufferBinding(call.VertexBuffer2, call.VertexOffset2, 1),
+                                new VertexBufferBinding(call.VertexBuffer, call.VertexOffset, 1),
+                                new VertexBufferBinding(call.VertexBuffer2, call.VertexOffset2, 1),
                                 new VertexBufferBinding(call.VertexBuffer3, call.VertexOffset3, 1)
                             );
                         } else if (call.VertexBuffer2 != null) {
                             device.SetVertexBuffers(
-                                call.VertexBuffer, new VertexBufferBinding(call.VertexBuffer2, call.VertexOffset2, 1)
+                                new VertexBufferBinding(call.VertexBuffer, call.VertexOffset, 1),
+                                new VertexBufferBinding(call.VertexBuffer2, call.VertexOffset2, 1)
                             );
                         } else {
                             // FIXME: Throw?
