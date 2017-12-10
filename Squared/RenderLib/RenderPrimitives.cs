@@ -451,7 +451,7 @@ namespace Squared.Render {
                             );
                         } else {
                             // FIXME: Throw?
-                            device.SetVertexBuffers(call.VertexBuffer);
+                            device.SetVertexBuffers(new VertexBufferBinding(call.VertexBuffer, call.VertexOffset, 1));
                         }
                         device.Indices = call.IndexBuffer;
                         device.DrawInstancedPrimitives(
