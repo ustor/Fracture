@@ -58,8 +58,8 @@ technique WorldSpaceBitmapTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 WorldSpaceVertexShader();
-        pixelShader = compile ps_3_0 BasicPixelShader();
+        vertexShader = compile vs_4_0 WorldSpaceVertexShader();
+        pixelShader = compile ps_4_0 BasicPixelShader();
     }
 }
 
@@ -67,8 +67,8 @@ technique ScreenSpaceBitmapTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 ScreenSpaceVertexShader();
-        pixelShader = compile ps_3_0 BasicPixelShader();
+        vertexShader = compile vs_4_0 ScreenSpaceVertexShader();
+        pixelShader = compile ps_4_0 BasicPixelShader();
     }
 }
 
@@ -76,8 +76,8 @@ technique WorldSpaceShadowedBitmapTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 WorldSpaceVertexShader();
-        pixelShader = compile ps_3_0 ShadowedPixelShader();
+        vertexShader = compile vs_4_0 WorldSpaceVertexShader();
+        pixelShader = compile ps_4_0 ShadowedPixelShader();
     }
 }
 
@@ -85,8 +85,8 @@ technique ScreenSpaceShadowedBitmapTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 ScreenSpaceVertexShader();
-        pixelShader = compile ps_3_0 ShadowedPixelShader();
+        vertexShader = compile vs_4_0 ScreenSpaceVertexShader();
+        pixelShader = compile ps_4_0 ShadowedPixelShader();
     }
 }
 
@@ -94,8 +94,8 @@ technique WorldSpaceBitmapWithDiscardTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 WorldSpaceVertexShader();
-        pixelShader = compile ps_3_0 BasicPixelShaderWithDiscard();
+        vertexShader = compile vs_4_0 WorldSpaceVertexShader();
+        pixelShader = compile ps_4_0 BasicPixelShaderWithDiscard();
     }
 }
 
@@ -103,7 +103,7 @@ technique ScreenSpaceBitmapWithDiscardTechnique
 {
     pass P0
     {
-        vertexShader = compile vs_3_0 ScreenSpaceVertexShader();
-        pixelShader = compile ps_3_0 BasicPixelShaderWithDiscard();
+        vertexShader = compile vs_4_0 ScreenSpaceVertexShader();
+        pixelShader = compile ps_4_0 BasicPixelShaderWithDiscard();
     }
 }
