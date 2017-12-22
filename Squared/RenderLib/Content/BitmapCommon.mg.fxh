@@ -101,6 +101,7 @@ void ScreenSpaceVertexShader(
     out float2 texBR : TEXCOORD2,
     out float4 result : POSITION0
 ) {
+    //* OG
     float2 regionSize = ComputeRegionSize(texRgn);
     float2 corner = ComputeCorner(cornerIndex, regionSize);
     texCoord = ComputeTexCoord(cornerIndex, corner, texRgn, texTL, texBR);
@@ -109,6 +110,28 @@ void ScreenSpaceVertexShader(
     position.xy += rotatedCorner;
 
     result = TransformPosition(float4(position.xy, position.z, 1), 0.5);
+    //*/
+
+    /* EXPERIMENTAL
+    float2 regionSize = ComputeRegionSize(texRgn);
+    float2 corner = ComputeCorner(cornerIndex, regionSize);
+    texCoord = ComputeTexCoord(cornerIndex, corner, texRgn, texTL, texBR);
+    float2 rotatedCorner = ComputeRotatedCorner(corner, texRgn, scaleOrigin, rotation);
+
+    float2 fakeCorner = Corners[cornerIndex.x];
+    rotatedCorner = ComputeRotatedCorner(fakeCorner, float4(0, 0, 1, 1), float4(1, 1, 0, 0), 0);
+    
+    position.xy += rotatedCorner;
+
+    result = TransformPosition(float4(position.xy, position.z, 1), 0.5);
+    result = float4(position.xy, 1, 1);
+    //*/
+
+    //* HORROR SHOW
+    float2 fakeCorner = Corners[cornerIndex.x]; // * regionSize?
+    result = float4(fakeCorner.x, fakeCorner.y, 1, 1); // PLEASE SOMETHING
+    //*/
+
 }
 
 void WorldSpaceVertexShader(
@@ -132,4 +155,10 @@ void WorldSpaceVertexShader(
     position.xy += rotatedCorner - Viewport_Position.xy;
     
     result = TransformPosition(float4(position.xy * Viewport_Scale.xy, position.z, 1), 0.5);
+
+    //* HORROR SHOW
+    float2 fakeCorner = Corners[cornerIndex.x]; // * regionSize?
+    result = float4(fakeCorner.x, fakeCorner.y, 1, 1); // PLEASE SOMETHING
+    //*/
+    //result = float4(position.xy, position.z, 1);
 }

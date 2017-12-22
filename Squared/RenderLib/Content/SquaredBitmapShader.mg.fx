@@ -16,6 +16,10 @@ void BasicPixelShader(
 
     result = multiplyColor * tex2D(TextureSampler, clamp(texCoord, texTL, texBR));
     result += (addColor * result.a);
+
+    //* HORROR SHOW
+    result = float4(texCoord.x, texCoord.y, 1, 1);
+    //*/
 }
 
 void ShadowedPixelShader(
@@ -34,6 +38,11 @@ void ShadowedPixelShader(
     float4 shadowColor = ShadowColor * tex2D(TextureSampler, shadowTexCoord);
     float shadowAlpha = 1 - texColor.a;
     result = ((shadowColor * shadowAlpha) + (addColor * texColor.a)) * multiplyColor.a + (texColor * multiplyColor);
+
+    //* HORROR SHOW
+    float antioptimization = (shadowColor.b * shadowAlpha) + (addColor.b * 1) * (multiplyColor.a * 0.1);
+    result = float4(texCoord.x, texCoord.y, antioptimization, 1);
+    //*/
 }
 
 void BasicPixelShaderWithDiscard(
@@ -52,6 +61,10 @@ void BasicPixelShaderWithDiscard(
 
     const float discardThreshold = (1.0 / 255.0);
     clip(result.a - discardThreshold);
+
+    //* HORROR SHOW
+    result = float4(texCoord.x, texCoord.y, 1, 1);
+    //*/
 }
 
 technique WorldSpaceBitmapTechnique
