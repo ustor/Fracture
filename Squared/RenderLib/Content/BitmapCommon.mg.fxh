@@ -101,7 +101,7 @@ void ScreenSpaceVertexShader(
     out float2 texBR : TEXCOORD2,
     out float4 result : POSITION0
 ) {
-    //* OG
+    /* OG
     float2 regionSize = ComputeRegionSize(texRgn);
     float2 corner = ComputeCorner(cornerIndex, regionSize);
     texCoord = ComputeTexCoord(cornerIndex, corner, texRgn, texTL, texBR);
@@ -128,8 +128,22 @@ void ScreenSpaceVertexShader(
     //*/
 
     //* HORROR SHOW
+    float2 fakeRegionSize = ComputeRegionSize(texRgn);
     float2 fakeCorner = Corners[cornerIndex.x]; // * regionSize?
+    fakeCorner = ComputeCorner(cornerIndex, fakeRegionSize); // OKish?
+    texCoord = ComputeTexCoord(cornerIndex, fakeCorner, texRgn, texTL, texBR);
+    float4 fakeScaleOrigin = float4(1, 1, 0, 0); // scaleX, scaleY, originX, originY
+    float2 fakeRotation = ComputeRotatedCorner(fakeCorner, texRgn, fakeScaleOrigin, 0);
+
+    //position.xy += fakeRotation;
+    float3 fakePosition = float3(fakeCorner.xy, 1);
+    
     result = float4(fakeCorner.x, fakeCorner.y, 1, 1); // PLEASE SOMETHING
+    //result = float4( fakePosition.xyz, 1);
+    //result = float4(position.xy, position.z, 1);
+
+    //result = TransformPosition(float4(fakePosition.xy, fakePosition.z, 1), 0.5);
+    //result = TransformPosition(float4(position.xy, position.z, 1), 0.5);
     //*/
 
 }
