@@ -79,7 +79,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Content\SquaredShaders.mgcb" />
+    <MonoGameContentReference Include="Content\SquaredShaders.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameLib\Squared.Game.MGDX.csproj">
